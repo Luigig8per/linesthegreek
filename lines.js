@@ -55,18 +55,38 @@ var woola=[];
     // console.log($element.text());
      linesList[index] = {};
      
-    
+      linesList[index]['teams'] = {};
+
 
      var header = $(element).find('.notes-bar')
 
      
-     linesList[index]['name']=$(element).children().first().text();
+     linesList[index]['hour']=$(element).children().first().text();
+
+     linesList[index]['team']=$(element).find('[class="name"]').text();
+   
 
 
-     var header = $(element).find('.notes-bar')
+    //Good one: Just need to create new entity and divide fields:
+    linesList[index]['spread_home']=$(element).find('[id="spread_home"][class="spread"]').text();
+
+     //Next one looks perfect
      linesList[index]['ml']=$(element).find('[id=ml]').text();
-     linesList[index]['ml']=$(element).find('[id=gt]').text();
-     linesList[index]['tt']=$(element).find('[id=tt]').text();
+
+      //Working: Just need to include for each a hared or similar.
+     linesList[index]['gt']=$(element).find('[id=gt],[class="total"]').text();
+     linesList[index]['tt']=$(element).find('[id="tt"],[class="team-total"]').text();
+
+     
+
+     //Working: Just need to divide and see how to add anothers divisions
+     linesList[index]['ml']=$(element).find('[id=ml]').text();
+
+    
+    
+     console.log( linesList[index]['team']);
+
+
      //linesList[index]['nam']=$(element).find('[class=name]').text();
 
  var header3=  $(element).find('[id=spread_home]')
@@ -75,7 +95,7 @@ var woola=[];
  });
  
  
- console.log(linesList);
+ //console.log(linesList);
 
  
 
