@@ -17,29 +17,90 @@ fs.readFile('body.html', 'utf8', function (err,data) {
      jsonframe($); // initializes the plugin
 
 
+let frame1={
+    "title": "h1", 
+    "Subtitle": "h3",
+    
+            "Sub":"h4",
+    
+            "Date" : "h2",
+    
+          
+    "Games":{
+        "_s":".lines",
+        "_d":[{
+            "Title": ".name",
 
-     
+            "title":"h3",
+            "hour":".notes-bar",
+            "SpreadHome":".spread",
+            "MoneyLn":".money-line",
+            
+            "Total":".total",
+           
+    
+            "Team total":".team-total",
+
+            "Teams":{
+                "_s":"ul",
+                "_d":[{
+                    "Title": ".name",
+        
+                    "title":"h3",
+                    "hour":".notes-bar",
+                    "SpreadHome":".spread",
+                    "MoneyLn":".money-line",
+                    
+                    "Total":".total",
+                   
+            
+                    "Team total":".team-total",
+                }]
+            }
+
+
+        }]
+    }
+}
      let frame = {
         "title": "h1", // this is an inline selector
 
 
         "Subtitle": "h3",
 
+        "Sub":"h4",
+
+        "Date" : "h2",
+
+        "MoneyLn":".money-line",
+        "SpreadHome":".spread",
+        "Total":".total",
+        "Title": "name",
+
+        "Team total":".team-total",
+       
+       
 
         "lines": {  
             "selector": ".lines",   
 
           "id": "id",
-            
 
+         
+            
+          "team": {                                    // defining "url" by an attribute with "attr" and "selector" in an object
+          "selector": ".header [itemprop=name]",      // is actually the same as the inline selector
+          "attr": "href"                              // the attribute name to retrieve
+        },
           
 
         }
        
     }
+    
 
 
-    console.log( $('body').scrape(frame, { string: true } ))
+    console.log("SPORTBOOK: "  + $('body').scrape(frame1, { string: true } ))
 
 
 
@@ -74,6 +135,9 @@ fs.readFile('body.html', 'utf8', function (err,data) {
         }
     
     };
+
+
+    
     
 
 
