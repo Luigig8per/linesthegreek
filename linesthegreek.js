@@ -1,7 +1,8 @@
 let cheerio = require('cheerio')
-
+var http= require("http")
 var fs = require('fs');
 var express = require('express');
+var jquerygo = require('jquerygo');
 
 
 fs.readFile('body.html', 'utf8', function (err,data) {
@@ -18,12 +19,12 @@ fs.readFile('body.html', 'utf8', function (err,data) {
 
 
 let frame1={
-    "title": "h1", 
+    "Title": "h1", 
 
 "LEAGUES":
 {
 
-    "Subtitle": "h3",
+    "Sport": "h3",
     
             "Sub":"h4",
     
@@ -41,6 +42,7 @@ let frame1={
             "Teams":{
                 "_s":"ul",
                 "_d":[{
+                    "id": "",
                     "Team": ".name",
         
                     "title":"h3",
@@ -61,19 +63,27 @@ let frame1={
 
 }
 }
+
     
     
-    console.log("SPORTBOOK: "  + $('body').scrape(frame1, { string: true } ))
+    
+    var json=$('body').scrape(frame1, { string: true } );
+    console.log("SPORTBOOK: "  + json);
 
 
+    fs.writeFile('thegreek.json', JSON.stringify(json, null, 4), function(err) {
+        console.log('Thegreek saved in price.json file');
+    });
 
+    http.createServer(function(req,res){
+        var jsonFile=fs.readFile("thegreek.json", function(err,html){
+                    res.writeHead(200,{"Content-Ype":"text/html"})
+                    res.write(JSON.stringify({nombre:"Luis", username:"uriel"}));
+                    res.end();
+                    console.log("JSON File:" + jsonFile);
+                });
+    }).listen(8080);
    
-
-
-    
-    
-
-
 });
 
 
