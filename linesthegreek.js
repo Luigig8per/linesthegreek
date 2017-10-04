@@ -5,6 +5,8 @@ var express = require('express');
 var jquerygo = require('jquerygo');
 var sql = require("mssql");
 
+//
+
 fs.readFile('body.html', 'utf8', function (err,data) {
     if (err) {
       return console.log(err);
@@ -53,7 +55,7 @@ let frame1={
                     "Total":".total",
                    
             
-                    "Team total":".team-total",
+                    "Teamtotal":".team-total",
                 }]
             }
 
@@ -64,7 +66,32 @@ let frame1={
 }
 }
 
-    
+var  executeQuery = function(query){             
+    sql.connect(dbConfig, function (err) {
+        if (err) {   
+                    console.log("Error while connecting database :- " + err);
+                    res.send(err);
+                 }
+                 else {
+                        // create Request object
+                        var request = new sql.Request();
+                        // query to the database
+                        request.query(query, function (err, res) {
+                          if (err) {
+                                     console.log("Error while querying database :- " + err);
+                                   
+                                    }
+                                    else {
+                                     sql.c
+                                           }
+                              });
+                      }
+     }); 
+   
+               
+}
+
+
     
     
     var json=$('body').scrape(frame1, { string: true } );
@@ -76,14 +103,18 @@ var json2= JSON.parse(json);
   //WORKS: console.log(json2.LEAGUES.Games[1].Teams[1].Team);
 
   console.log(json2.LEAGUES.Games);
-
-    for( var Games in json2.LEAGUES) {    
+  var values= [];
+    for( var Games in json2.LEAGUES.Games) {    
+        sql.close();
+     
+    //  values.push([json2.LEAGUES.Games[Games].Title, json2.LEAGUES.Games[Games].hour] )
+        var query = "INSERT INTO [the_greek_game] (title, hour, teamhome, team_home_spread, team_away, team_away_total) VALUES (" + json2.LEAGUES.Games[Games].Title +"," + json2.LEAGUES.Games[Games].hour + "," + json2.LEAGUES.Games[Games].Teams[1].Team + "," + json2.LEAGUES.Games[Games].Teams[1].Spread + ", " + json2.LEAGUES.Games[Games].Teams[1].MoneyLn + ", " + json2.LEAGUES.Games[Games].Teams[1].Teamtotal + "," +  + " )";
+       console.log(query);
+      //  executeQuery (query);
+       console.log(json2.LEAGUES.Games[Games]);
+     //  executeQuery("INSERT INTO [the_greek_game] (title, hour) VALUES ('json2.LEAGUES.Games[Games].Title','json2.LEAGUES.Games[Games].hour]')");
        
-         console.log(json2.LEAGUES[Games]);
-        // console.log('Games' + Games);
-//console.log( 'Game1: ' + Games[1]);
-          //  console.log( 'Count: ' + Teams[field][0].Team);
-    
+        
     
     }
 
@@ -109,28 +140,9 @@ var dbConfig = {
     database: 'DonBest' 
 };
 
-var  executeQuery = function(query){             
-    sql.connect(dbConfig, function (err) {
-        if (err) {   
-                    console.log("Error while connecting database :- " + err);
-                    res.send(err);
-                 }
-                 else {
-                        // create Request object
-                        var request = new sql.Request();
-                        // query to the database
-                        request.query(query, function (err, res) {
-                          if (err) {
-                                     console.log("Error while querying database :- " + err);
-                                   
-                                    }
-                                    else {
-                                     
-                                           }
-                              });
-                      }
-     });           
-}
+
+
+
 
 
 
