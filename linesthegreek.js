@@ -3,7 +3,7 @@ var http= require("http")
 var fs = require('fs');
 var express = require('express');
 var jquerygo = require('jquerygo');
-var sql = require("mssql");
+
 
 //
 
@@ -66,30 +66,7 @@ let frame1={
 }
 }
 
-var  executeQuery = function(query){             
-    sql.connect(dbConfig, function (err) {
-        if (err) {   
-                    console.log("Error while connecting database :- " + err);
-                    res.send(err);
-                 }
-                 else {
-                        // create Request object
-                        var request = new sql.Request();
-                        // query to the database
-                        request.query(query, function (err, res) {
-                          if (err) {
-                                     console.log("Error while querying database :- " + err);
-                                   
-                                    }
-                                    else {
-                                     sql.c
-                                           }
-                              });
-                      }
-     }); 
-   
-               
-}
+
 
 
     
@@ -132,14 +109,6 @@ var json2= JSON.parse(json);
     }).listen(8080);
    
 });
-
-var dbConfig = {
-    user: 'sportbookdba',
-    password: 'lumalu',
-    server: '10.10.10.46', 
-    database: 'DonBest' 
-};
-
 
 
 
