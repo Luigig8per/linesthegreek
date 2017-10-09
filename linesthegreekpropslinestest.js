@@ -111,60 +111,29 @@ let frame1={
     
           
 
-            "id":".lines  @ id",
+          
      
 
 
             "Games":{
                 "_s":".simpleContainer",
                 "_d":[{
-                        "Game":"h2",
+                        "NameGame":"h2",
                         "Date":".icon",
-                    
+                     
 
-                        "Events":{
+                        "Events1":{
                             "_s":".table-container",
                             "_d":[{
                     
-
-                                "id": ".lines @ id",
-                                 "TitleEvent": ".simpleContainer @ id",
-                                 "id":".lines-props @ id",
-                                 "Game":"h2",
-                    
-                                "TitleEvent": ".title",
-                                 "Game":"h2",
-                                  "player1":".has-lines .name",
-                                  "player1odds":".has-lines .odd ",
-                                "id": ".lines @ id",
-                                
-                                "titleh3":"h3 .orn",
-                                "hournotesbar":".notes-bar",
-                                
-                                  "id":".row-home @ id",
-                    
-                                  "home_team":".row-home .name",
-                                  "home_spread":".row-home .spread",
-                                  "home_money_line":".row-home .money-line",
-                                  "home_pitcher":".row-home .pitcher",
-                                  "home_total":".row-home .total",
-                                   "home_team_total":".row-home .team-total",
-                    
-                                   "player2":".row-away .name",
-                                    "player2_odd":".row-away .odd",
-                                  "away_spread":".row-away .spread",
-                                  "away_money_line":".row-away .money-line",
-                                  "away_pitcher":".row-away .pitcher",
-                                  "away_total":".row-away .total",
-                                "away_team_total":".row-away .team-total",
-                    
-
-
-
+                                "id1":".lines-props @ id",
+                                "id2": ".lines @ id",
+                             
+        
                                 "Events2":{
                                     "_s":".lines",
                                     "_d":[{
-                            
+                                        "id":"@ id",
                                          "TitleEvent": ".simpleContainer @ id",
                                          "id":".lines-props @ id",
                                          "Game":"h2",
@@ -221,25 +190,27 @@ let frame1={
     // console.log("SPORTBOOK: "  + json);
 var json2= JSON.parse(json);
 console.log(json2);
+console.log(json2.Games.Events1);
 
  //   var Leagues= json2.LEAGUES.Sport.Title;
   //WORKS: console.log(json2.LEAGUES.Games[1].Teams[1].Team);
-  console.log("Events from game 0:")
- console.log(json2.PROPOSITIONS.Games[0].Events);
+ 
   var values= [];
-  
-     for( var Games in json2.PROPOSITIONS.Games) {    
-       console.log(json2.PROPOSITIONS.Games[Games].Game);
+//   console.log( 'Lenght of game:' + json2.PROPOSITIONS.Games[0].lenght);
+//      for( var Games in json2.PROPOSITIONS.Games) {    
+//        console.log(json2.PROPOSITIONS.Games[Games].Game);
 
-       for( var Events in json2.PROPOSITIONS.Games[Games].Events) {   
-        console.log(json2.PROPOSITIONS.Games[Games].Game +"," +json2.PROPOSITIONS.Games[Games].Events[Events].Title + "  Event " + Events + " in  Games  "+ Games +"" );
+//        for( var Events in json2.PROPOSITIONS.Games[Games].Events) {   
+//         console.log(json2.PROPOSITIONS.Games[Games].Game +"," +json2.PROPOSITIONS.Games[Games].Events[Events].Title + "  Event " + Events + " in  Games  "+ Games +"" );
 
 
     
-        updateMember(json2.PROPOSITIONS.Games.title,json2.PROPOSITIONS.Games[Games].Events[Events].Title,json2.PROPOSITIONS.Games[Games].Events[Events].hour, json2.PROPOSITIONS.Games[Games].Events[Events].player1, '',  json2.PROPOSITIONS.Games[Games].Events[Events].player1odds,' json2.LEAGUES.Games[Games].home_total', json2.PROPOSITIONS.Games[Games].Events[Events].player2, 'json2.LEAGUES.Games[Games].away_spread',   json2.PROPOSITIONS.Games[Games].Events[Events].player2odd, 'json2.LEAGUES.Games[Games].away_total', json2.PROPOSITIONS.Games[Games].Game);
+//         updateMember(json2.PROPOSITIONS.Games.title,json2.PROPOSITIONS.Games[Games].Events[Events].Title,json2.PROPOSITIONS.Games[Games].Events[Events].hour, json2.PROPOSITIONS.Games[Games].Events[Events].player1, '',  json2.PROPOSITIONS.Games[Games].Events[Events].player1odds,' json2.LEAGUES.Games[Games].home_total', json2.PROPOSITIONS.Games[Games].Events[Events].player2, 'json2.LEAGUES.Games[Games].away_spread',   json2.PROPOSITIONS.Games[Games].Events[Events].player2odd, 'json2.LEAGUES.Games[Games].away_total', json2.PROPOSITIONS.Games[Games].Game);
 
-       }
-    }
+//        }
+//     }
+
+
     //   for( var Events in json2.PROPOSITIONS.Games) {   
     //     var player2odd=json2.LEAGUES.Games[Games].player2_odd;
     
@@ -253,8 +224,31 @@ console.log(json2);
      //  executeQuery("INSERT INTO [the_greek_game] (title, hour) VALUES ('json2.LEAGUES.Games[Games].Title','json2.LEAGUES.Games[Games].hour]')");
        
         
+//     console.log('Events');
+//     console.log(json2.PROPOSITIONS.Games[0].Events);
     
-    
+//      for( var Events in json2.PROPOSITIONS.Games[0].Events) {  
+//          console.log('Event ' + Events + "(" + json2.PROPOSITIONS.Games[0].Events.id + ")"); 
+//          console.log(json2.PROPOSITIONS.Games[0].Events[Events]);
+//       //  console.log(json2.PROPOSITIONS.Games[Games].Event +"," +json2.PROPOSITIONS.Games[Games].Events[Events].Title + "  Event " + Events + " in  Games  "+ Games +"" );
+//         for( var Events2 in json2.PROPOSITIONS.Games[0].Events[Events].Events2) {   
+//           //  console.log(json2.PROPOSITIONS.Games.Game +"," +json2.PROPOSITIONS.Games[Games].Events[Events].Events2[Events2].Title + "  Event " + Events + " in  Games  "+ Games +"" );
+// console.log('Event2 cicle' + Events2);
+
+// console.log("Events2 from Event1 " + Events)
+// console.log(json2.PROPOSITIONS.Games[0].Events[Events].Events2);
+
+//          }
+//      }
+console.log('Games>')
+    for (var Game in json2.PROPOSITIONS.Games)
+    {
+        console.log('Game ' + Game)
+        console.log(json2.PROPOSITIONS.Games[Game].NameGame);
+
+       
+       
+    }
 
     fs.writeFile('thegreek.json', JSON.stringify(json, null, 4), function(err) {
         console.log('Thegreek saved in price.json file');
