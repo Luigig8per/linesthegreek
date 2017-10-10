@@ -98,7 +98,7 @@ fs.readFile('bodyprops.html', 'utf8', function (err,data) {
 let frame1={
     
 
-"LEAGUES":
+"PROPOSITIONS":
 {
 
   //  "Sport": ".simpleContainer",
@@ -110,13 +110,13 @@ let frame1={
             "id":".lines  @ id",
      
           
-    "Games":{
+    "Events":{
         "_s":".lines",
         "_d":[{
 
             "NameGame":"h2",
             "Date":".icon",
-
+            "id":".lines  @ id",
             "id1":".lines-props @ id",
             "id2": ".lines @ id",
 
@@ -125,6 +125,7 @@ let frame1={
 
             "Title": ".title",
              "Game":"h2",
+             "ID": ".lines  @ id",
               "player1":".has-lines .name",
               "player1odds":".has-lines .odd ",
             "id": ".lines @ id",
@@ -170,12 +171,13 @@ var json2= JSON.parse(json);
  //   var Leagues= json2.LEAGUES.Sport.Title;
   //WORKS: console.log(json2.LEAGUES.Games[1].Teams[1].Team);
 
-  console.log(json2.LEAGUES);
+  console.log(json2.PROPOSITIONS.Events);
+  console.log('EVENTS:')
   var values= [];
-    for( var Games in json2.LEAGUES.Games) {    
-        console.log('Game ' + Games)
-        console.log(json2.LEAGUES.Games[Games]
-        )
+    for( var Events in json2.PROPOSITIONS.Events) {    
+        console.log('Game ' + Events)
+        console.log(json2.PROPOSITIONS.Events[Events]);
+        
      
         
     //  values.push([json2.LEAGUES.Games[Games].Title, json2.LEAGUES.Games[Games].hour] )
