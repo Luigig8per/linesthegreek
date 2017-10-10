@@ -149,55 +149,99 @@ let frame1={
                       "away_total":".row-away .total",
                     "away_team_total":".row-away .team-total",
         
-        
+                    "Events":{
+                        "_s":".lines",
+                        "_d":[{
+                
+                            "NameGame":"h2",
+                            "Date":".icon",
+                            "id":".lines  @ id",
+                            "id1":".lines-props @ id",
+                            "id2": ".lines @ id",
+                
+                             "Title1": ".simpleContainer @ id",
+                             "Game":"h2",
+                
+                            "Title": ".title",
+                             "Game":"h2",
+                             "ID": ".lines  @ id",
+                              "player1":".has-lines .name",
+                              "player1odds":".has-lines .odd ",
+                            "id": ".lines @ id",
+                            
+                            "title":"h3 .orn",
+                            "hour":".notes-bar",
+                            
+                              "id":".row-home @ id",
+                
+                              "home_team":".row-home .name",
+                              "home_spread":".row-home .spread",
+                              "home_money_line":".row-home .money-line",
+                              "home_pitcher":".row-home .pitcher",
+                              "home_total":".row-home .total",
+                               "home_team_total":".row-home .team-total",
+                
+                               "player2":".row-away .name",
+                                "player2_odd":".row-away .odd",
+                              "away_spread":".row-away .spread",
+                              "away_money_line":".row-away .money-line",
+                              "away_pitcher":".row-away .pitcher",
+                              "away_total":".row-away .total",
+                            "away_team_total":".row-away .team-total",
+                
+                
+                
+                        }]
+                    }
+                
         
                 }]
             },
           
-    "Events":{
-        "_s":".lines",
-        "_d":[{
+    // "Events":{
+    //     "_s":".lines",
+    //     "_d":[{
 
-            "NameGame":"h2",
-            "Date":".icon",
-            "id":".lines  @ id",
-            "id1":".lines-props @ id",
-            "id2": ".lines @ id",
+    //         "NameGame":"h2",
+    //         "Date":".icon",
+    //         "id":".lines  @ id",
+    //         "id1":".lines-props @ id",
+    //         "id2": ".lines @ id",
 
-             "Title1": ".simpleContainer @ id",
-             "Game":"h2",
+    //          "Title1": ".simpleContainer @ id",
+    //          "Game":"h2",
 
-            "Title": ".title",
-             "Game":"h2",
-             "ID": ".lines  @ id",
-              "player1":".has-lines .name",
-              "player1odds":".has-lines .odd ",
-            "id": ".lines @ id",
+    //         "Title": ".title",
+    //          "Game":"h2",
+    //          "ID": ".lines  @ id",
+    //           "player1":".has-lines .name",
+    //           "player1odds":".has-lines .odd ",
+    //         "id": ".lines @ id",
             
-            "title":"h3 .orn",
-            "hour":".notes-bar",
+    //         "title":"h3 .orn",
+    //         "hour":".notes-bar",
             
-              "id":".row-home @ id",
+    //           "id":".row-home @ id",
 
-              "home_team":".row-home .name",
-              "home_spread":".row-home .spread",
-              "home_money_line":".row-home .money-line",
-              "home_pitcher":".row-home .pitcher",
-              "home_total":".row-home .total",
-               "home_team_total":".row-home .team-total",
+    //           "home_team":".row-home .name",
+    //           "home_spread":".row-home .spread",
+    //           "home_money_line":".row-home .money-line",
+    //           "home_pitcher":".row-home .pitcher",
+    //           "home_total":".row-home .total",
+    //            "home_team_total":".row-home .team-total",
 
-               "player2":".row-away .name",
-                "player2_odd":".row-away .odd",
-              "away_spread":".row-away .spread",
-              "away_money_line":".row-away .money-line",
-              "away_pitcher":".row-away .pitcher",
-              "away_total":".row-away .total",
-            "away_team_total":".row-away .team-total",
+    //            "player2":".row-away .name",
+    //             "player2_odd":".row-away .odd",
+    //           "away_spread":".row-away .spread",
+    //           "away_money_line":".row-away .money-line",
+    //           "away_pitcher":".row-away .pitcher",
+    //           "away_total":".row-away .total",
+    //         "away_team_total":".row-away .team-total",
 
 
 
-        }]
-    }
+    //     }]
+    // }
 
 }
 }
@@ -210,33 +254,39 @@ let frame1={
     var json=$('body').scrape(frame1, { string: true } );
     // console.log("SPORTBOOK: "  + json);
 var json2= JSON.parse(json);
-//console.log(json);
+console.log(json);
 
  //   var Leagues= json2.LEAGUES.Sport.Title;
   //WORKS: console.log(json2.LEAGUES.Games[1].Teams[1].Team);
-
-  console.log(json2.PROPOSITIONS.Events);
-  console.log('EVENTS:')
-  console.log('GAMES :')
-  console.log(json2.PROPOSITIONS.Games);
+//   console.log('EVENTS:')
+//   console.log(json2.PROPOSITIONS.Events);
+  
+//   console.log('GAMES :')
+//   console.log(json2.PROPOSITIONS.Games);
   var values= [];
-    for( var Events in json2.PROPOSITIONS.Events) {    
-        console.log('Event ' + Events)
-        console.log(json2.PROPOSITIONS.Events[Events]);
+    // for( var Events in json2.PROPOSITIONS.Events) {    
+    //     console.log('Event ' + Events)
+    //     console.log(json2.PROPOSITIONS.Events[Events]);
         
      
     
-    }
-
+    // }
+    console.log('Events in game cicle:')
     for( var Game in json2.PROPOSITIONS.Games) {    
-        console.log('Game ' + Events)
-        console.log(json2.PROPOSITIONS.Games[Game]);
+        console.log('Game ' + Game)
+        console.log(json2.PROPOSITIONS.Games[Game].Title);
         
         for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
-            console.log('Event ' + Events)
+            console.log('Event ' + Events + ' Game ' + Game)
             console.log(json2.PROPOSITIONS.Games[Game].Events[Events]);
         }
     }
+
+    // console.log('Events only cicle:')
+    // for( var Events in json2.PROPOSITIONS.Games.Events) {    
+    //     console.log('Event ' + Events)
+    //     console.log(json2.PROPOSITIONS.Games.Events[Events]);
+    // }
 
     fs.writeFile('thegreek.json', JSON.stringify(json, null, 4), function(err) {
         console.log('Thegreek saved in price.json file');
