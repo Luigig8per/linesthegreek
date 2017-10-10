@@ -107,63 +107,28 @@ let frame1={
     
             "Date" : "h2",
 
-            "id":".lines  @ id",
+          //  "id":".lines  @ id",
      
             "Games":{
                 "_s":".simpleContainer",
                 "_d":[{
         
-                    "NameGame":"h2",
-                    "Date":".icon",
-                    "id":".lines  @ id",
-                    "id1":".lines-props @ id",
-                    "id2": ".lines @ id",
-        
-                     "Title1": ".simpleContainer @ id",
-                     "Game":"h2",
-        
+               
                     "Title": ".title",
-                     "Game":"h2",
+                   
                      "ID": ".lines  @ id",
-                      "player1":".has-lines .name",
-                      "player1odds":".has-lines .odd ",
-                    "id": ".lines @ id",
                     
-                    "title":"h3 .orn",
-                    "hour":".notes-bar",
-                    
-                      "id":".row-home @ id",
-        
-                      "home_team":".row-home .name",
-                      "home_spread":".row-home .spread",
-                      "home_money_line":".row-home .money-line",
-                      "home_pitcher":".row-home .pitcher",
-                      "home_total":".row-home .total",
-                       "home_team_total":".row-home .team-total",
-        
-                       "player2":".row-away .name",
-                        "player2_odd":".row-away .odd",
-                      "away_spread":".row-away .spread",
-                      "away_money_line":".row-away .money-line",
-                      "away_pitcher":".row-away .pitcher",
-                      "away_total":".row-away .total",
-                    "away_team_total":".row-away .team-total",
+                   
         
                     "Events":{
                         "_s":".lines",
                         "_d":[{
                 
-                            "NameGame":"h2",
-                            "Date":".icon",
-                            "id":".lines  @ id",
-                            "id1":".lines-props @ id",
-                            "id2": ".lines @ id",
-                
-                             "Title1": ".simpleContainer @ id",
-                             "Game":"h2",
+                       
+                         
                 
                             "Title": ".title",
-                             "Game":"h2",
+                          
                              "ID": ".lines  @ id",
                               "player1":".has-lines .name",
                               "player1odds":".has-lines .odd ",
@@ -271,16 +236,16 @@ console.log(json);
      
     
     // }
-    console.log('Events in game cicle:')
-    for( var Game in json2.PROPOSITIONS.Games) {    
-        console.log('Game ' + Game)
-        console.log(json2.PROPOSITIONS.Games[Game].Title);
+    // console.log('Events in game cicle:')
+    // for( var Game in json2.PROPOSITIONS.Games) {    
+    //     console.log('Game ' + Game)
+    //     console.log(json2.PROPOSITIONS.Games[Game].Title);
         
-        for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
-            console.log('Event ' + Events + ' Game ' + Game)
-            console.log(json2.PROPOSITIONS.Games[Game].Events[Events]);
-        }
-    }
+    //     for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
+    //         console.log('Event ' + Events + ' Game ' + Game)
+    //         console.log(json2.PROPOSITIONS.Games[Game].Events[Events]);
+    //     }
+    // }
 
     // console.log('Events only cicle:')
     // for( var Events in json2.PROPOSITIONS.Games.Events) {    
