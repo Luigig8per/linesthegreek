@@ -173,16 +173,20 @@ console.log(json);
      
     
     // }
-    // console.log('Events in game cicle:')
-    // for( var Game in json2.PROPOSITIONS.Games) {    
-    //     console.log('Game ' + Game)
-    //     console.log(json2.PROPOSITIONS.Games[Game].Title);
+     console.log('Events in game cicle:')
+    for( var Game in json2.PROPOSITIONS.Games) {   
         
-    //     for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
-    //         console.log('Event ' + Events + ' Game ' + Game)
-    //         console.log(json2.PROPOSITIONS.Games[Game].Events[Events]);
-    //     }
-    // }
+        if (Game>0)
+        {
+        console.log('Game ' + Game)
+         console.log(json2.PROPOSITIONS.Games[Game].Title);
+        
+        for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
+            console.log('Event ' + Events + ' Game ' + Game)
+            console.log(json2.PROPOSITIONS.Games[Game].Events[Events]);
+         }
+        }
+   }
 
     // console.log('Events only cicle:')
     // for( var Events in json2.PROPOSITIONS.Games.Events) {    
