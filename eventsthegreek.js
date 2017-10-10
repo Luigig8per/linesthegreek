@@ -103,9 +103,9 @@ let frame1={
 
   //  "Sport": ".simpleContainer",
     
-            "Sub":".simpleContainer @ id",
+            "Sub":"h1",
     
-            "Date" : "h2",
+         //   "Date":".icon",
 
           //  "id":".lines  @ id",
      
@@ -114,7 +114,7 @@ let frame1={
                 "_d":[{
         
                
-                    "Title": ".title",
+                    "Title": "H2",
                    
                    
         
