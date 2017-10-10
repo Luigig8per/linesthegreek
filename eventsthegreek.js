@@ -116,8 +116,6 @@ let frame1={
                
                     "Title": ".title",
                    
-                     "ID": ".lines  @ id",
-                    
                    
         
                     "Events":{
@@ -125,36 +123,17 @@ let frame1={
                         "_d":[{
                 
                        
-                         
-                
+                                       
                             "Title": ".title",
                           
-                             "ID": ".lines  @ id",
+                        
                               "player1":".has-lines .name",
                               "player1odds":".has-lines .odd ",
-                            "id": ".lines @ id",
-                            
-                            "title":"h3 .orn",
-                            "hour":".notes-bar",
-                            
-                              "id":".row-home @ id",
-                
-                              "home_team":".row-home .name",
-                              "home_spread":".row-home .spread",
-                              "home_money_line":".row-home .money-line",
-                              "home_pitcher":".row-home .pitcher",
-                              "home_total":".row-home .total",
-                               "home_team_total":".row-home .team-total",
+                         
                 
                                "player2":".row-away .name",
                                 "player2_odd":".row-away .odd",
-                              "away_spread":".row-away .spread",
-                              "away_money_line":".row-away .money-line",
-                              "away_pitcher":".row-away .pitcher",
-                              "away_total":".row-away .total",
-                            "away_team_total":".row-away .team-total",
-                
-                
+                                           
                 
                         }]
                     }
@@ -162,51 +141,9 @@ let frame1={
         
                 }]
             },
-          
-    // "Events":{
-    //     "_s":".lines",
-    //     "_d":[{
+   
 
-    //         "NameGame":"h2",
-    //         "Date":".icon",
-    //         "id":".lines  @ id",
-    //         "id1":".lines-props @ id",
-    //         "id2": ".lines @ id",
-
-    //          "Title1": ".simpleContainer @ id",
-    //          "Game":"h2",
-
-    //         "Title": ".title",
-    //          "Game":"h2",
-    //          "ID": ".lines  @ id",
-    //           "player1":".has-lines .name",
-    //           "player1odds":".has-lines .odd ",
-    //         "id": ".lines @ id",
-            
-    //         "title":"h3 .orn",
-    //         "hour":".notes-bar",
-            
-    //           "id":".row-home @ id",
-
-    //           "home_team":".row-home .name",
-    //           "home_spread":".row-home .spread",
-    //           "home_money_line":".row-home .money-line",
-    //           "home_pitcher":".row-home .pitcher",
-    //           "home_total":".row-home .total",
-    //            "home_team_total":".row-home .team-total",
-
-    //            "player2":".row-away .name",
-    //             "player2_odd":".row-away .odd",
-    //           "away_spread":".row-away .spread",
-    //           "away_money_line":".row-away .money-line",
-    //           "away_pitcher":".row-away .pitcher",
-    //           "away_total":".row-away .total",
-    //         "away_team_total":".row-away .team-total",
-
-
-
-    //     }]
-    // }
+   
 
 }
 }
