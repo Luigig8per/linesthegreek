@@ -178,12 +178,14 @@ console.log(json);
         
         if (Game>0)
         {
-        console.log('Game ' + Game)
-         console.log(json2.PROPOSITIONS.Games[Game].Title);
+        console.log('Game ' + Game + ' ' + json2.PROPOSITIONS.Games[Game].Title)
+         console.log();
         
         for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
-            console.log('Event ' + Events + ' Game ' + Game)
+            console.log('Event ' + Events + ' Game ' + Game + ' ' + json2.PROPOSITIONS.Games[Game].Title )
             console.log(json2.PROPOSITIONS.Games[Game].Events[Events]);
+
+            
          }
         }
    }
