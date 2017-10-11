@@ -200,6 +200,11 @@ console.log(json);
       
         for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
            
+            for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
+                
+      console.log('iNSERT:');
+                 insertEvent(json2.PROPOSITIONS.Sub, '', json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].player1, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, '',json2.PROPOSITIONS.Games[Game].Events[Events].player2, '', json2.PROPOSITIONS.Games[Game].Events[Events].player2_odd,'', json2.PROPOSITIONS.Games[Game].Events[Events].Title );
+              }
  console.log('iNSERT:');
             insertEvent(json2.PROPOSITIONS.Sub, '', json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].player1, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, '',json2.PROPOSITIONS.Games[Game].Events[Events].player2, '', json2.PROPOSITIONS.Games[Game].Events[Events].player2_odd,'', json2.PROPOSITIONS.Games[Game].Events[Events].Title );
          }
