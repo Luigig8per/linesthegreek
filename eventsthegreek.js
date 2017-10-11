@@ -16,14 +16,17 @@ var config = {
 
 sql.setDefaultConfig( config );
 
-
-var insertEvent = function( thegreek_event_id, title, hour,  home_team, home_spread,  home_money_ln, home_total, away_team, away_spread, away_money_ln , away_total, game_title) {
+var insertEvent = function(propositions_name, thegreek_event_id, title, hour,  home_team, home_spread,  home_money_ln, home_total, away_team, away_spread, away_money_ln , away_total, game_title) {
     
     
     
         return sql.execute( {
             procedure: "[dbo].[thegreek_insert_event]",
             params: {
+                propositions_name: {
+                    type: sql.VARCHAR(200),
+                    val: propositions_name
+                },
                 thegreek_event_id: {
                     type: sql.VARCHAR(200),
                     val: thegreek_event_id
@@ -85,6 +88,7 @@ var insertEvent = function( thegreek_event_id, title, hour,  home_team, home_spr
        
     };
 
+//
 
 
 //
@@ -123,25 +127,41 @@ let frame1={
                
                     "Title": "H2",
                    
+                    "id":".lines  @ id",
                    
         
                     "Events":{
-                        "_s":".lines",
+                        "_s":".table-container",
                         "_d":[{
                 
-                       
-                                       
-                            "Title": ".title",
+                            "id":".lines  @ id",
                           
-                        
-                              "player1":".has-lines .name",
-                              "player1odds":".has-lines .odd ",
-                         
-                
-                               "player2":".row-away .name",
-                                "player2_odd":".row-away .odd",
-                                           
-                
+                                       
+            
+                                "Lines":{
+                                    "_s":".lines",
+                                    "_d":[{
+                            
+                                        "id":".lines  @ id",
+                                      
+                                        // "id6": "@ id",
+                                        // "id7": "@ id",
+                                                   
+                                        "Title": ".title",
+                                      
+                                    
+                                          "player1":".has-lines .name",
+                                          "player1odds":".has-lines .odd ",
+                                     
+                            
+                                           "player2":".row-away .name",
+                                            "player2_odd":".row-away .odd",
+                                                       
+                            
+                                    }]
+                                }
+
+
                         }]
                     }
                 
@@ -177,14 +197,11 @@ console.log(json);
         
         if (Game>0)
         {
-        console.log('Game ' + Game + ' ' + json2.PROPOSITIONS.Games[Game].Title)
-         console.log();
-        
+      
         for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
-            console.log('Event ' + Events + ' Game ' + Game + ' ' + json2.PROPOSITIONS.Games[Game].Title )
-            console.log(json2.PROPOSITIONS.Games[Game].Events[Events].Title);
+           
 
-            insertEvent('', json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].player1, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, '',json2.PROPOSITIONS.Games[Game].Events[Events].player2, '', json2.PROPOSITIONS.Games[Game].Events[Events].player2_odd,'', json2.PROPOSITIONS.Games[Game].Events[Events].Title );
+            insertEvent(json2.PROPOSITIONS.Sub, '', json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].player1, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, '',json2.PROPOSITIONS.Games[Game].Events[Events].player2, '', json2.PROPOSITIONS.Games[Game].Events[Events].player2_odd,'', json2.PROPOSITIONS.Games[Game].Events[Events].Title );
          }
         }
    }
