@@ -6,77 +6,84 @@ var jquerygo = require('jquerygo');
 var sql = require("seriate");
 let jsonframe = require('jsonframe-cheerio');
 
-// Change the config settings to match your
-// SQL Server and database
+
 var config = {
-   "host": "localhost",
-    "user": "sa",
-    "password": "laptop",
-    "database": "DonBest"
-};
+    "host": "10.10.10.46",
+     "user": "sportbookdba",
+     "password": "lumalu",
+     "database": "DonBest"
+ };
 
 sql.setDefaultConfig( config );
 
 
-var updateMember = function( thegreek_event_id, title, hour,  home_team, home_spread,  home_money_ln, home_total, away_team, away_spread, away_money_ln , away_total) {
+var insertEvent = function( thegreek_event_id, title, hour,  home_team, home_spread,  home_money_ln, home_total, away_team, away_spread, away_money_ln , away_total, game_title) {
+    
+    
+    
+        return sql.execute( {
+            procedure: "[dbo].[thegreek_insert_event]",
+            params: {
+                thegreek_event_id: {
+                    type: sql.VARCHAR(200),
+                    val: thegreek_event_id
+                },
+                home_team: {
+                    type: sql.VARCHAR(200),
+                    val: home_team
+                },
+                title: {
+                    type: sql.VARCHAR(200),
+                    val: title
+                },
+                home_spread: {
+                    type: sql.VARCHAR(200),
+                    val: home_spread
+                },
+                hour: {
+                    type: sql.VARCHAR(200),
+                    val: hour
+                },
+                 home_money_ln: {
+                    type: sql.VARCHAR(200),
+                    val: home_money_ln
+                },
+                 home_total: {
+                    type: sql.VARCHAR(200),
+                    val: home_total
+                },
+                  away_team: {
+                    type: sql.VARCHAR(200),
+                    val: away_team
+                },
+                 away_spread: {
+                    type: sql.VARCHAR(200),
+                    val: away_spread
+                },
+                away_money_ln: {
+                    type: sql.VARCHAR(200),
+                    val: away_money_ln
+                    
+                },
+    
+                 away_total: {
+                    type: sql.VARCHAR(200),
+                    val: away_total
+                  },
+    
+                game_title: {
+                  type: sql.VARCHAR(200),
+                      val: game_title
+                    },
 
-
-
-    return sql.execute( {
-        procedure: "[dbo].[thegreek_insert_event]",
-        params: {
-            thegreek_event_id: {
-                type: sql.VARCHAR(200),
-                val: thegreek_event_id
-            },
-            home_team: {
-                type: sql.VARCHAR(200),
-                val: home_team
-            },
-            title: {
-                type: sql.VARCHAR(200),
-                val: title
-            },
-            home_spread: {
-                type: sql.NVARCHAR,
-                val: home_spread
-            },
-            hour: {
-                type: sql.VARCHAR,
-                val: hour
-            },
-             home_money_ln: {
-                type: sql.VARCHAR,
-                val: home_money_ln
-            },
-             home_total: {
-                type: sql.VARCHAR,
-                val: home_total
-            },
-              away_team: {
-                type: sql.VARCHAR,
-                val: away_team
-            },
-             away_spread: {
-                type: sql.VARCHAR,
-                val: away_spread
-            },
-            away_money_ln: {
-                type: sql.VARCHAR,
-                val: away_spread
-                
-            },
-
-             away_total: {
-                type: sql.VARCHAR,
-                val: away_total
-},
-
-
-
-        }
-    } );
-};
+                  
+    
+    
+    
+            }
+        } );
+       
+    };
 
 
 
@@ -158,17 +165,9 @@ let frame1={
 var json2= JSON.parse(json);
 console.log(json);
 
- //   var Leagues= json2.LEAGUES.Sport.Title;
-  //WORKS: console.log(json2.LEAGUES.Games[1].Teams[1].Team);
-//   console.log('EVENTS:')
-//   console.log(json2.PROPOSITIONS.Events);
-  
-//   console.log('GAMES :')
-//   console.log(json2.PROPOSITIONS.Games);
+ 
   var values= [];
-    // for( var Events in json2.PROPOSITIONS.Events) {    
-    //     console.log('Event ' + Events)
-    //     console.log(json2.PROPOSITIONS.Events[Events]);
+  
         
      
     
@@ -183,9 +182,9 @@ console.log(json);
         
         for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
             console.log('Event ' + Events + ' Game ' + Game + ' ' + json2.PROPOSITIONS.Games[Game].Title )
-            console.log(json2.PROPOSITIONS.Games[Game].Events[Events]);
+            console.log(json2.PROPOSITIONS.Games[Game].Events[Events].Title);
 
-            
+            insertEvent('', json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].player1, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, json2.PROPOSITIONS.Games[Game].Events[Events].player1odds, '',json2.PROPOSITIONS.Games[Game].Events[Events].player2, '', json2.PROPOSITIONS.Games[Game].Events[Events].player2_odd,'', json2.PROPOSITIONS.Games[Game].Events[Events].Title );
          }
         }
    }

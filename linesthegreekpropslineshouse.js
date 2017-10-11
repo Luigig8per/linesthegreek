@@ -164,12 +164,11 @@ let frame1={
     
     
     var json=$('body').scrape(frame1, { string: true } );
-    // console.log("SPORTBOOK: "  + json);
+    
 var json2= JSON.parse(json);
-//console.log(json);
 
- //   var Leagues= json2.LEAGUES.Sport.Title;
-  //WORKS: console.log(json2.LEAGUES.Games[1].Teams[1].Team);
+
+ 
 
   console.log(json2.PROPOSITIONS.Events);
   console.log('EVENTS:')
@@ -180,14 +179,7 @@ var json2= JSON.parse(json);
         
      
         
-    //  values.push([json2.LEAGUES.Games[Games].Title, json2.LEAGUES.Games[Games].hour] )
-        //var query = "INSERT INTO [the_greek_game] (title, hour, teamhome, team_home_spread, team_away, team_away_total) VALUES (" + json2.LEAGUES.Games[Games].Title +"," + json2.LEAGUES.Games[Games].hour + "," + + "," +  + ", " + json2.LEAGUES.Games[Games].Teams[1].MoneyLn + ", " + json2.LEAGUES.Games[Games].Teams[1].Teamtotal + "," +  + " )";
-     //  updateMember(json2.LEAGUES.Games[Games].id.replace('-0-t1',''),json2.LEAGUES.Games[Games].Title,json2.LEAGUES.Games[Games].hour, json2.LEAGUES.Games[Games].home_team , json2.LEAGUES.Games[Games].home_team.Spread,  json2.LEAGUES.Games[Games].home_money_line, json2.LEAGUES.Games[Games].home_total, json2.LEAGUES.Games[Games].away_team, json2.LEAGUES.Games[Games].away_spread, json2.LEAGUES.Games[Games].away_money_line, json2.LEAGUES.Games[Games].away_total);
-   
-      //  executeQuery (query);
-     //  console.log(json2.LEAGUES.Games[Games]);
-     //  executeQuery("INSERT INTO [the_greek_game] (title, hour) VALUES ('json2.LEAGUES.Games[Games].Title','json2.LEAGUES.Games[Games].hour]')");
-       
+  
         
     
     }
