@@ -200,8 +200,9 @@ let frame1={
 {
 
   //  "Sport": ".simpleContainer",
-    
+    "All":"*",
             "Sub":"h1",
+           
     
          //   "Date":".icon",
 
@@ -215,35 +216,39 @@ let frame1={
                     "Title": "H2",
                    
                     "id":".lines  @ id",
-                   
+                    
         
                     "Events":{
                         "_s":".table-container",
                         "_d":[{
                 
                             "id":".lines  @ id",
-                          
+                            "id2":".lines [id]",
                                        
             
                                 "Lines":{
                                     "_s":".lines",
                                     "_d":[{
                             
-                                        "id":".lines  @ id",
-                                      
+                                        "id":"div  @ id",
+                                        "id":"  @ id",
+                                        "id3":"  [id]",
+                                        "id4":"  #id",
+                                        "id5":"  [attr=id]",
                                         // "id6": "@ id",
                                         // "id7": "@ id",
                                                    
                                         "Title": ".title",
-                                      
+                                        "Note":".props-table.props-bar",
                                     
                                             "Players":{
                                                 "_s":".table",
                                                 "_d":[{
-                                        
+                                                    "id5":"  [attr=id]",
                                                     "id":".lines  @ id",
                                                   
-                                                 
+                                                    "id3":"  [id]",
+                                                    "id4":"  #id",
                                                  
                                      
                                                 
@@ -291,7 +296,7 @@ console.log(json);
     var numPlayers=0;
 
     // }
-     console.log('Events in game cicle:')
+   //  console.log('Events in game cicle:')
     for( var Game in json2.PROPOSITIONS.Games) {   
         
        
@@ -325,12 +330,12 @@ console.log(json);
                             {
                                 insertEventNHL('', json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds );
                                 console.log('Players:' + numPlayers);
-                                console.log('Event:' + Events);
-                                console.log('Player 1: ' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player);
-                                console.log('Player 2: ' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player);
-                                console.log('Player 3: ' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player);
-                                console.log('Title:' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title);
-                                console.log('Title2:' + json2.PROPOSITIONS.Games[Game].Title);
+                                // console.log('Event:' + Events);
+                                // console.log('Player 1: ' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player);
+                                // console.log('Player 2: ' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player);
+                                // console.log('Player 3: ' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player);
+                                // console.log('Title:' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title);
+                                // console.log('Title2:' + json2.PROPOSITIONS.Games[Game].Title);
                             
                              //  insertEventNHL('', json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].playerodds );
                             }
