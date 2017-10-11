@@ -88,7 +88,7 @@ var insertEventNHL = function(qPlayers, propositions_name, thegreek_event_id, ti
 
 
                     option_3: {
-                        type: sql.VARCHAR(20),
+                        type: sql.VARCHAR(200),
                             val: option_3
                           },
 
@@ -98,7 +98,7 @@ var insertEventNHL = function(qPlayers, propositions_name, thegreek_event_id, ti
                               },
 
                               option_4: {
-                                type: sql.VARCHAR(20),
+                                type: sql.VARCHAR(200),
                                     val: option_4
                                   },
         
@@ -193,7 +193,7 @@ var insertEventNHL = function(qPlayers, propositions_name, thegreek_event_id, ti
 
 //
 
-fs.readFile('bodypropsNHL.html', 'utf8', function (err,data) {
+fs.readFile('bodyprops.html', 'utf8', function (err,data) {
     if (err) {
       return console.log(err);
     }
@@ -341,7 +341,7 @@ console.log(json);
                              else
                              if (numPlayers==3)
                             {
-                                insertEventNHL(3, json2.PROPOSITIONS.Sub, json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title , json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds );
+                                insertEventNHL(3,json2.PROPOSITIONS.Sub, '', json2.PROPOSITIONS.Games[Game].Title, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds, '',  json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds );
                                 console.log('Players:' + numPlayers);
                                 // console.log('Event:' + Events);
                                 // console.log('Player 1: ' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player);
@@ -354,7 +354,10 @@ console.log(json);
                             }
                             if (numPlayers==4)
                             {
-                                insertEventNHL(4, json2.PROPOSITIONS.Sub, json2.PROPOSITIONS.Games[Game].Title,'',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title , json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].playerodds );
+                              //  insertEventNHL(4, json2.PROPOSITIONS.Sub, '',json2.PROPOSITIONS.Games[Game].Title,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title , json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].playerodds );
+                                        
+                                
+                                  insertEventNHL(4,json2.PROPOSITIONS.Sub, '', json2.PROPOSITIONS.Games[Game].Title, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds, '',  json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].playerodds );
                                 console.log('Players:' + numPlayers);
                                 // console.log('Event:' + Events);
                                 // console.log('Player 1: ' + json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player);
