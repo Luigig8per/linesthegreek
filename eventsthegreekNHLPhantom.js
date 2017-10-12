@@ -6,6 +6,23 @@ var jquerygo = require('jquerygo');
 var sql = require("seriate");
 let jsonframe = require('jsonframe-cheerio');
 
+const phantom = require('phantom');
+
+(async function() {
+    const instance = await phantom.create();
+    const page = await instance.createPage();
+    await page.on("onResourceRequested", function(requestData) {
+        console.info('Requesting', requestData.url)
+    });
+
+    const status = await page.open('https://stackoverflow.com/');
+    console.log(status);
+
+    const content = await page.property('content');
+    console.log(content);
+
+    await instance.exit();
+}());
 
 var config = {
     "host": "10.10.10.46",
@@ -300,7 +317,7 @@ let frame1={
     var json=$('body').scrape(frame1, { string: true } );
     // console.log("SPORTBOOK: "  + json);
 var json2= JSON.parse(json);
-console.log(json);
+//console.log(json);
 
  
   var values= [];
@@ -321,9 +338,7 @@ console.log(json);
             for( var Lines in json2.PROPOSITIONS.Games[Game].Events[Events].Lines) {   
                 
                 eventId= json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].id;
-                console.log('EventStart  ' + eventId.slice(0,9));
-                console.log('EventEnd  ' +   eventId.slice(11,20));
-
+              
                 
                 for( var Players in json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players) {    
                     
