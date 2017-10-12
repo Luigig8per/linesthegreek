@@ -20,8 +20,6 @@ sql.setDefaultConfig( config );
 
 var insertEventNHL = function(qPlayers, propositions_name, thegreek_event_id, title, hour,  home_team, home_spread,  home_money_ln, home_total, away_team, away_spread, away_money_ln , away_total, game_title, option_3, option_3_money_ln, option_4, option_4_money_ln) {
     
-    
-    
         return sql.execute( {
             procedure: "[dbo].[thegreek_insert_event_nhl]",
             params: {
@@ -117,82 +115,7 @@ var insertEventNHL = function(qPlayers, propositions_name, thegreek_event_id, ti
        
     };
 
-    var insertEvent = function( propositions_name, thegreek_event_id, title, hour,  home_team, home_spread,  home_money_ln, home_total, away_team, away_spread, away_money_ln , away_total, game_title) {
-        
-        
-        
-            return sql.execute( {
-                procedure: "[dbo].[thegreek_insert_event]",
-                params: {
-
-                  
-
-                    propositions_name: {
-                        type: sql.VARCHAR(200),
-                        val: propositions_name
-                    },
-                    thegreek_event_id: {
-                        type: sql.INT,
-                        val: thegreek_event_id
-                    },
-                    home_team: {
-                        type: sql.VARCHAR(200),
-                        val: home_team
-                    },
-                    title: {
-                        type: sql.VARCHAR(200),
-                        val: title
-                    },
-                    home_spread: {
-                        type: sql.VARCHAR(200),
-                        val: home_spread
-                    },
-                    hour: {
-                        type: sql.VARCHAR(200),
-                        val: hour
-                    },
-                     home_money_ln: {
-                        type: sql.VARCHAR(200),
-                        val: home_money_ln
-                    },
-                     home_total: {
-                        type: sql.VARCHAR(200),
-                        val: home_total
-                    },
-                      away_team: {
-                        type: sql.VARCHAR(200),
-                        val: away_team
-                    },
-                     away_spread: {
-                        type: sql.VARCHAR(200),
-                        val: away_spread
-                    },
-                    away_money_ln: {
-                        type: sql.VARCHAR(200),
-                        val: away_money_ln
-                        
-                    },
-        
-                     away_total: {
-                        type: sql.VARCHAR(200),
-                        val: away_total
-                      },
-        
-                    game_title: {
-                      type: sql.VARCHAR(200),
-                          val: game_title
-                        },
     
-                      
-        
-        
-        
-                }
-            } );
-           
-        };
-
-//
 
 fs.readFile('propositionsBaseball.html', 'utf8', function (err,data) {
     if (err) {
@@ -294,8 +217,7 @@ let frame1={
 
 
     
-    
-    var json=$('body').scrape(frame1, { string: true } );
+var json=$('body').scrape(frame1, { string: true } );
  
 var json2= JSON.parse(json);
 console.log(json);
@@ -366,14 +288,9 @@ console.log(json);
        
    }
 
-    // console.log('Events only cicle:')
-    // for( var Events in json2.PROPOSITIONS.Games.Events) {    
-    //     console.log('Event ' + Events)
-    //     console.log(json2.PROPOSITIONS.Games.Events[Events]);
-    // }
-
+    
     fs.writeFile('thegreek.json', JSON.stringify(json, null, 4), function(err) {
-        console.log('Thegreek saved in price.json file');
+        console.log('Thegreek saved in theGreek.json file');
     });
 
     http.createServer(function(req,res){
