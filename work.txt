@@ -1,0 +1,3 @@
+Added idfrom the_greek to each event, based on players ids.
+Created merge(upsert) procedure for the times when data is already on main data base. If data is already inserted, will be updated on main table and 
+inserted on table of history if data is different.
