@@ -144,25 +144,25 @@ var insertEventNHL = function(qPlayers, propositions_name, thegreek_event_id, ti
        
     };
 
-    http.createServer(function(req,res){
-        var jsonFile=fs.readFile("thegreek.json", function(err,html){
-                    res.writeHead(200,{"Content-Ype":"text/html"})
-                    res.write(JSON.stringify({nombre:"Luis", username:"uriel"}));
-                    res.end();
-                    console.log("JSON File:" + jsonFile);
-                });
-    }).listen(8080);
+    // http.createServer(function(req,res){
+    //     var jsonFile=fs.readFile("thegreek.json", function(err,html){
+    //                 res.writeHead(200,{"Content-Ype":"text/html"})
+    //                 res.write(JSON.stringify({nombre:"Luis", username:"uriel"}));
+    //                 res.end();
+    //                 console.log("JSON File:" + jsonFile);
+    //             });
+    // }).listen(8080);
 
     var task = cron.schedule('*/5 * * * *', function(){
         console.log('running a task every 5 minutes. Actual time: ' + getDateTime());
-        readNHLData();
+        readNHLData('propositionsBaseball.html');
       });
 
       task.start();
 
-function readNHLData()
+function readNHLData(dirFile)
 {
-    fs.readFile('propositionsBaseball.html', 'utf8', function (err,data) {
+    fs.readFile(dirFile, 'utf8', function (err,data) {
         if (err) {
           return console.log(err);
         }
