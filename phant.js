@@ -6,11 +6,19 @@ phantom.create().then(function(ph){
     return _ph.createPage();
 }).then(function(page){
     _page = page;
-    return _page.open('http://thegreek.com/sportsbook/bet/betting-odds/Baseball%20Propositions');
+   
+  
+     _page.open('http://thegreek.com/sportsbook/bet/betting-odds/Baseball%20Propositions');
+     return _page.switchToFrame('content-frame').then(function() {
+        // now the context of `page` will be the iframe if frame name or position exists 
+    });
 }).then(function(status){
     console.log(status);
-    return _page.property('content')
+   
 }).then(function(content){
+
+    
+
     console.log(content);
     _page.close();
    

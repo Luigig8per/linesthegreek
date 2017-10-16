@@ -5,6 +5,10 @@ var express = require('express');
 var jquerygo = require('jquerygo');
 var sql = require("seriate");
 let jsonframe = require('jsonframe-cheerio');
+var Horseman = require('node-horseman');
+var horseman = new Horseman();
+
+
 
 const phantom = require('phantom');
 

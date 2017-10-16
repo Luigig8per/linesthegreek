@@ -8,6 +8,9 @@ let jsonframe = require('jsonframe-cheerio');
 var schedule = require('node-schedule');
 var cronJob = require('cron').CronJob;
 var cron = require('node-cron');
+var Horseman = require('node-horseman');
+
+
 
 
 
@@ -155,192 +158,210 @@ var insertEventNHL = function(qPlayers, propositions_name, thegreek_event_id, ti
 
     var task = cron.schedule('*/5 * * * *', function(){
         console.log('running a task every 5 minutes. Actual time: ' + getDateTime());
-        readNHLData('propositionsBaseball.html');
+        readNHLData('http://www.thegreek.com/sportsbook/bet/betting-odds/Baseball%20Propositions');
+        readNHLData('http://www.thegreek.com/sportsbook/bet/betting-odds/Hockey%20Propositions');
       });
 
       task.start();
 
 function readNHLData(dirFile)
 {
-    fs.readFile(dirFile, 'utf8', function (err,data) {
-        if (err) {
-          return console.log(err);
-        }
+
+
+    var horseman = new Horseman();
     
-        var dataHtml= (data);
+    horseman
+      .open(dirFile)
+      .switchToFrame('content-frame')
+      .html()
+      .then(function(htmlText){
+      //  console.log("Text: " +htmlText);
+        horseman.close();
+
+
+        fs.readFile('propositionsBaseball.html', 'utf8', function (err,data) {
+            if (err) {
+              return console.log(err);
+            }
         
-         let $= cheerio.load(dataHtml);
-    
-         
-         jsonframe($); // initializes the plugin
-    
-    
-    let frame1={
+            var dataHtml= (htmlText);
+            
+             let $= cheerio.load(dataHtml);
         
-    
-    "PROPOSITIONS":
-    {
-    
-    
-        "All":"*",
-                "Sub":"h1",
-               
+             
+             jsonframe($); // initializes the plugin
         
+        
+        let frame1={
             
-         
-                "Games":{
-                    "_s":".simpleContainer .simpleContainer",
-                    "_d":[{
+        
+        "PROPOSITIONS":
+        {
+        
+        
+            "All":"*",
+                    "Sub":"h1",
+                   
             
-                        "MainMsg":"#MainMsg",
-                        "Title": "H2",
-                       
-                        "idGame":".lines  @ id",
-                        "id2":".lines [id]",
-            
-                        "Events":{
-                            "_s":".table-container",
-                            "_d":[{
-                    
-                                "id":".lines  @ id[2]",
-                                "id2":".lines [id]",
-                                           
                 
-                                    "Lines":{
-                                        "_s":".lines",
-                                        "_d":[{
-                                
-                                            "id":"div  @ id",
-                                            "id":".table  @ id",
-                                            "id3":"  [id]",
-                                            "id4":"  #id",
-                                            "id5":"  [attr=id]",
-                                         
-                                                       
-                                            "Title": ".title",
-                                            "Note":".props-table.props-bar",
-                                        
-                                                "Players":{
-                                                    "_s":".table",
-                                                    "_d":[{
-                                                        "id":".table  @ id",
-                                                        "id5":"  [attr=id]",
-                                                        "id":".lines  @ id",
-                                                      
-                                                        "id3":"  [id]",
-                                                        "id4":"  #id",
-                                                     
-                                         
-                                                    
-                                                          "player":".has-lines .name",
-                                                          "playerodds":".has-lines .odd ",
-                                                                                              
-                                            
-                                                    }]
-                                                }
-    
-                                                           
-                                
-                                        }]
-                                    }
-    
-    
-                            }]
-                        }
-                    
-            
-                    }]
-                },
-       
-    
-       
-    
-    }
-    }
-    
-    
-    
-    
-        
-    var json=$('body').scrape(frame1, { string: true } );
-     
-    var json2= JSON.parse(json);
-    //console.log(json);
-    
-     
-      var values= [];
-      
-            
-         
-        var numPlayers=0;
-    
-        
-        for( var Game in json2.PROPOSITIONS.Games) {   
-            
-           
-          
-            for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
-               
-    
-                for( var Lines in json2.PROPOSITIONS.Games[Game].Events[Events].Lines) {   
-                    
-                    eventId= json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].id;
-                  
-                    
-                    for( var Players in json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players) {    
+             
+                    "Games":{
+                        "_s":".simpleContainer .simpleContainer",
+                        "_d":[{
+                
+                            "MainMsg":"#MainMsg",
+                            "Title": "H2",
+                           
+                            "idGame":".lines  @ id",
+                            "id2":".lines [id]",
+                
+                            "Events":{
+                                "_s":".table-container",
+                                "_d":[{
                         
-                     
-                                     
-                                       numPlayers=numPlayers+1;
-                                   
-                                 }
-    
-                                 if (numPlayers==1)
-                                 {
-                                   
-                                  
-                                 }
-                                 
-                                 else
-                                 if (numPlayers==2)
-                                 {
-                                    insertEventNHL(3,json2.PROPOSITIONS.Sub, eventId.slice(0,9), json2.PROPOSITIONS.Games[Game].Title, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',  json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds );
-                                 }
-                                 else
-                                 if (numPlayers==3)
-                                {
-                                    insertEventNHL(3,json2.PROPOSITIONS.Sub, eventId.slice(0,9), json2.PROPOSITIONS.Games[Game].Title, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',  json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds );
-                                    console.log('Players:' + numPlayers);
-                                   
-                                }
-                                if (numPlayers==4)
-                                {
-                                   
-                                    
-                                      insertEventNHL(4,json2.PROPOSITIONS.Sub, eventId.slice(0,9), json2.PROPOSITIONS.Games[Game].Title, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',  json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].playerodds );
-                                    console.log('Players:' + numPlayers);
-                                  
-                                }
-    
-                                numPlayers=0;
-    
-    
+                                    "id":".lines  @ id[2]",
+                                    "id2":".lines [id]",
+                                               
                     
-                  }
-    
-               
-             }
+                                        "Lines":{
+                                            "_s":".lines",
+                                            "_d":[{
+                                    
+                                                "id":"div  @ id",
+                                                "id":".table  @ id",
+                                                "id3":"  [id]",
+                                                "id4":"  #id",
+                                                "id5":"  [attr=id]",
+                                             
+                                                           
+                                                "Title": ".title",
+                                                "Note":".props-table.props-bar",
+                                            
+                                                    "Players":{
+                                                        "_s":".table",
+                                                        "_d":[{
+                                                            "id":".table  @ id",
+                                                            "id5":"  [attr=id]",
+                                                            "id":".lines  @ id",
+                                                          
+                                                            "id3":"  [id]",
+                                                            "id4":"  #id",
+                                                         
+                                             
+                                                        
+                                                              "player":".has-lines .name",
+                                                              "playerodds":".has-lines .odd ",
+                                                                                                  
+                                                
+                                                        }]
+                                                    }
+        
+                                                               
+                                    
+                                            }]
+                                        }
+        
+        
+                                }]
+                            }
+                        
+                
+                        }]
+                    },
            
-       }
-    
         
-        fs.writeFile('thegreek.json', JSON.stringify(json, null, 4), function(err) {
-            console.log('Thegreek saved in theGreek.json file');
+           
+        
+        }
+        }
+        
+        
+        
+        
+            
+        var json=$('body').scrape(frame1, { string: true } );
+         
+        var json2= JSON.parse(json);
+        //console.log(json);
+        
+         
+          var values= [];
+          
+                
+             
+            var numPlayers=0;
+        
+            
+            for( var Game in json2.PROPOSITIONS.Games) {   
+                
+               
+              
+                for( var Events in json2.PROPOSITIONS.Games[Game].Events) {    
+                   
+        
+                    for( var Lines in json2.PROPOSITIONS.Games[Game].Events[Events].Lines) {   
+                        
+                        eventId= json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].id;
+                      
+                        
+                        for( var Players in json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players) {    
+                            
+                         
+                                         
+                                           numPlayers=numPlayers+1;
+                                       
+                                     }
+        
+                                     if (numPlayers==1)
+                                     {
+                                       
+                                      
+                                     }
+                                     
+                                     else
+                                     if (numPlayers==2)
+                                     {
+                                        insertEventNHL(3,json2.PROPOSITIONS.Sub, eventId.slice(0,9), json2.PROPOSITIONS.Games[Game].Title, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',  json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds );
+                                     }
+                                     else
+                                     if (numPlayers==3)
+                                    {
+                                        insertEventNHL(3,json2.PROPOSITIONS.Sub, eventId.slice(0,9), json2.PROPOSITIONS.Games[Game].Title, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',  json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds );
+                                        console.log('Players:' + numPlayers);
+                                       
+                                    }
+                                    if (numPlayers==4)
+                                    {
+                                       
+                                        
+                                          insertEventNHL(4,json2.PROPOSITIONS.Sub, eventId.slice(0,9), json2.PROPOSITIONS.Games[Game].Title, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].player,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[1].playerodds,'', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].player, '', json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[0].playerodds, '',  json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Title, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[2].playerodds, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].player, json2.PROPOSITIONS.Games[Game].Events[Events].Lines[Lines].Players[3].playerodds );
+                                        console.log('Players:' + numPlayers);
+                                      
+                                    }
+        
+                                    numPlayers=0;
+        
+        
+                        
+                      }
+        
+                   
+                 }
+               
+           }
+        
+            
+            fs.writeFile('thegreek.json', JSON.stringify(json, null, 4), function(err) {
+                console.log('Thegreek saved in theGreek.json file');
+            });
+        
+            
+           
         });
+
+      });
+
     
-        
-       
-    });
     
     
     
